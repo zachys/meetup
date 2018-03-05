@@ -1,0 +1,31 @@
+{
+  "name": "meetup",
+  "version": "1.0.0",
+  "description": "automation to mail stone summit rsvp list every Monday",
+  "main": "climbOn.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zachys/meetup.git"
+  },
+  "keywords": [
+    "Meetup",
+    "Stone_Summit",
+    "Atlanta",
+    "Rock",
+    "Rock_Climbing",
+    "Automation"
+  ],
+  "author": "ZackStr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zachys/meetup/issues"
+  },
+  "homepage": "https://github.com/zachys/meetup#readme",
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "nodemailer": "^4.6.0"
+  }
+}

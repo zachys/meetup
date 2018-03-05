@@ -1,0 +1,1 @@
+cd /home/pi/meetup;nodejs climbOn.js
