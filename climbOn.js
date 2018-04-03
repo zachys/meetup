@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 const https = require("https");
 require('dotenv').config({ path: './.env' });
 console.log("THE LOCAL ENV VER ARE: "+JSON.stringify(process.env,null,2));
-const url = "https://api.meetup.com/Atlanta-Outdoor-Club-South/events?&page=1&omit=description,group,how_to_find_us"// - to find today's event ID where urlname 
+const url = "https://api.meetup.com/Atlanta-Outdoor-Club-South/events?&page=5&omit=description,group,how_to_find_us"// - to find today's event ID where urlname 
 //https://api.meetup.com/Atlanta-Outdoor-Club-South/events?&sign=true&photo-host=public&page=2&photo-host=public&page=2
 https.get(url, res => {
 	res.setEncoding("utf8");
@@ -15,11 +15,18 @@ https.get(url, res => {
 	body = body;
 	console.error(body);
 	body = JSON.parse(body);
-	body = body[0];
+	let todaysEvent = body[0];
+	//body = body[0];
 	let date = new Date;
 	let day = ("0" + date.getDate()).slice(-2);
 	let month = ("0" + (date.getMonth() + 1)).slice(-2)
 	let todaysDate = date.getFullYear()+"-"+month+"-"+day;
+	for (let i=0 ; i<body.length ; i++){
+		if ((body[i].venue.name.match(/stone summit/i))&&(todaysDate===body[i].local_date)){
+			todaysEvent = body[i];
+		}
+	}
+	body = todaysEvent;
 	//Event is confirmed: stone summit AND today!!! YEY
 	if ((body.venue.name.match(/stone summit/i))&&(todaysDate===body.local_date)){
 	//if ((body.venue.name.match(/stone summit/i))&&(todaysDate!==body.local_date)){
